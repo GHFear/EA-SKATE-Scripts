@@ -1,0 +1,11 @@
+# SKATE 3 RX2 RENAMER (script 0.2)
+
+endian big
+goto 1
+idstring "RW4xb2"
+get SIZE asize
+goto 0x1AC
+get NAME string
+string NAME -= "Texture"
+string NAME += "rx2"
+log NAME 0 SIZE

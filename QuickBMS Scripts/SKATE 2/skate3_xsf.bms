@@ -1,0 +1,64 @@
+# SKATE 3 XSF (script 0.3.2)
+
+comtype dk2
+endian big
+get FOLDER basename
+idstring "SFIL"
+padding 0x80
+get XSF_SIZE asize
+do
+    savepos ENTRY_OFF
+    get ID1 long
+	get ID2 long
+    get SIZE long
+    get HEAD_SIZE long
+    get XSIZE long
+    xmath OFFSET "ENTRY_OFF + HEAD_SIZE"
+
+    goto OFFSET
+    
+    getdstring DUMMY2 527
+	get NAME string
+	
+	/*
+	if NAME == "Texture"
+	    
+		goto -27 0 SEEK_CUR
+		get NAME string
+	    string NAME p "%s\%s.rx2" FOLDER NAME
+	   
+	else
+	
+        string NAME p "%s\%08x.rx2" FOLDER OFFSET
+		string NAME p "%08X.rx2" FOLDER "DUMMY"
+	endif
+	*/
+	string NAME p "%s\%08X%08X.rx2" FOLDER "ID1" "ID2"
+
+	
+	goto OFFSET
+	math OFFSET + 0x50
+	
+	
+    log NAME 0 0
+    append
+    for x = 0 < 5   # or is each field 0x20 bytes?
+        get SIZE long
+        get ZSIZE long
+        get ZIP long
+        get ZERO long
+
+        if ZSIZE != 0
+            if ZIP == 0
+                log NAME OFFSET SIZE
+            else
+                clog NAME OFFSET ZSIZE SIZE
+            endif
+            math OFFSET + ZSIZE
+        endif
+    next x
+    append
+
+    math ENTRY_OFF + XSIZE
+    goto ENTRY_OFF
+while ENTRY_OFF != XSF_SIZE

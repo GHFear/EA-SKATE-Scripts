@@ -1,0 +1,30 @@
+endian big
+idstring "ViV"
+get NAME basename
+goto 0
+get Head1 long
+get Head2 long
+get Head3 long
+get Head4 long
+math OFFSET = 12
+math SIZE = 16
+xmath TEST "Head4 - 28"
+goto 12
+append
+log NAME 0 12
+
+do
+savepos CURR
+log NAME OFFSET SIZE
+math OFFSET + 20
+goto 20 0 SEEK_CUR
+
+
+
+
+while CURR < TEST
+math OFFSET - 4
+
+log NAME OFFSET 4
+append
+print "Done!"

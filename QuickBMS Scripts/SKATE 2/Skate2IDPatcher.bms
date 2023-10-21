@@ -1,0 +1,15 @@
+endian big
+idstring "BIG"
+get VER byte
+get DUMMY long
+get FILES long
+get OFFSETX long
+
+goto OFFSETX
+put 19506 short
+math OFFSETX + 2
+goto OFFSETX
+put 14386 short
+math OFFSETX + 2
+goto OFFSETX
+put 5381 short

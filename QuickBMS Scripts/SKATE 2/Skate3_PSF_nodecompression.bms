@@ -1,0 +1,27 @@
+# SKATE 3 PSF (No decompression Script 0.2)
+comtype dk2
+endian big
+get FOLDER basename
+idstring "SFIL"
+padding 0x100
+get PSF_SIZE asize
+do
+    savepos ENTRY_OFF
+    getdstring DUMMY 8
+    get SIZE long
+    get HEAD_SIZE long
+    get XSIZE long
+    xmath OFFSET "ENTRY_OFF + HEAD_SIZE"
+	string NAME p "%s\%08x.psg" FOLDER OFFSET
+	
+	goto OFFSET
+	get HEADOFFSET long
+	math HEADOFFSET - 0x10
+	math OFFSET + 0
+    math SIZE - 0
+	
+	log NAME OFFSET SIZE
+	
+    math ENTRY_OFF + XSIZE
+    goto ENTRY_OFF
+while ENTRY_OFF != PSF_SIZE

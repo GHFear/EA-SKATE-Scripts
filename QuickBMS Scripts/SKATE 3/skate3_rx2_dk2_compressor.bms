@@ -1,0 +1,17 @@
+# SKATE 3 RX2 COMPRESSOR (script 0.3)
+comtype dk2_compress
+endian big
+goto 1
+idstring "RW4xb2"
+get SIZE asize
+goto 0x1AC
+get NAME string
+string NAME -= "Texture"
+string NAME += "rx2"
+string NAME += "_compressed"
+goto 568
+xmath OFFSET "SIZE - 568"
+append
+log NAME 0 568
+clog NAME 0x238 OFFSET SIZE
+append

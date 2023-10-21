@@ -1,0 +1,268 @@
+# SKATE 3 PSF (With decompression Script 0.5)
+comtype dk2
+endian big
+get FOLDER basename
+idstring "SFIL"
+padding 0x100
+get PSF_SIZE asize
+do
+    savepos ENTRY_OFF
+    getdstring DUMMY 8
+    get SIZE long
+    get HEAD_SIZE long
+    get XSIZE long
+    xmath OFFSET "ENTRY_OFF + HEAD_SIZE"
+	
+	math ZSIZE = 0
+	math ZSIZE2 = 0
+	math ZSIZE3 = 0
+	math ZSIZE4 = 0
+	
+	math ZSIZE5 = 0
+	math ZSIZE6 = 0
+	math ZSIZE7 = 0
+	math ZSIZE8 = 0
+	
+	math ZSIZE9 = 0
+	math ZSIZE10 = 0
+	math ZSIZE11 = 0
+	math ZSIZE12 = 0
+	
+	math ZSIZE13 = 0
+	math ZSIZE14 = 0
+	math ZSIZE15 = 0
+	math ZSIZE16 = 0
+	
+	math ZSIZE17 = 0
+	math ZSIZE18 = 0
+	math ZSIZE19 = 0
+	math ZSIZE20 = 0
+
+	
+	goto OFFSET
+	get PADDING long
+	getdstring DUMMY2 28
+	get ZSIZE long
+    get ZSIZE2 long
+    get ZSIZE3 long
+    get ZSIZE4 long
+	if PADDING == 0x40
+	    get ZSIZE5 long
+		get ZSIZE6 long
+		get ZSIZE7 long
+		get ZSIZE8 long
+	endif
+	
+	if PADDING == 0x50
+	    get ZSIZE5 long
+		get ZSIZE6 long
+		get ZSIZE7 long
+		get ZSIZE8 long
+	    get ZSIZE9 long
+		get ZSIZE10 long
+	    get ZSIZE11 long
+		get ZSIZE12 long
+    endif
+	
+	if PADDING == 0x60
+	    get ZSIZE5 long
+		get ZSIZE6 long
+		get ZSIZE7 long
+		get ZSIZE8 long
+	    get ZSIZE9 long
+		get ZSIZE10 long
+	    get ZSIZE11 long
+		get ZSIZE12 long
+		get ZSIZE13 long
+		get ZSIZE14 long
+		get ZSIZE15 long
+		get ZSIZE16 long
+    endif
+	
+	if PADDING == 0x70
+	    get ZSIZE5 long
+		get ZSIZE6 long
+		get ZSIZE7 long
+		get ZSIZE8 long
+	    get ZSIZE9 long
+		get ZSIZE10 long
+	    get ZSIZE11 long
+		get ZSIZE12 long
+		get ZSIZE13 long
+		get ZSIZE14 long
+		get ZSIZE15 long
+		get ZSIZE16 long
+		get ZSIZE17 long
+		get ZSIZE18 long
+		get ZSIZE19 long
+		get ZSIZE20 long
+    endif
+	
+	math OFFSET + PADDING
+	string NAME p "%s\%08x.psg" FOLDER OFFSET
+    xmath OFFSET2 " OFFSET + ZSIZE"
+
+
+
+    clog NAME OFFSET ZSIZE ZSIZE
+    append
+    clog NAME OFFSET2 ZSIZE2 ZSIZE2
+	
+    xmath OFFSET3 "OFFSET + ZSIZE + ZSIZE2"
+
+
+    if ZSIZE3 == 0
+        log NAME OFFSET3 ZSIZE3
+    else
+        clog NAME OFFSET3 ZSIZE3 ZSIZE3
+    endif
+
+
+    xmath OFFSET4 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3"
+
+    if ZSIZE4 == 0
+        log NAME OFFSET4 ZSIZE4
+    else
+        clog NAME OFFSET4 ZSIZE4 ZSIZE4
+    endif
+
+	
+	xmath OFFSET5 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4"
+
+    if ZSIZE5 == 0
+        log NAME OFFSET5 ZSIZE5
+    else
+        clog NAME OFFSET5 ZSIZE5 ZSIZE5
+    endif
+	
+	xmath OFFSET6 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5"
+
+    if ZSIZE6 == 0
+        log NAME OFFSET6 ZSIZE6
+    else
+        clog NAME OFFSET6 ZSIZE6 ZSIZE6
+    endif
+	
+	xmath OFFSET7 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6"
+
+    if ZSIZE7 == 0
+        log NAME OFFSET7 ZSIZE7
+    else
+        clog NAME OFFSET7 ZSIZE7 ZSIZE7
+    endif
+	
+	xmath OFFSET8 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7"
+
+    if ZSIZE8 == 0
+        log NAME OFFSET8 ZSIZE8
+    else
+        clog NAME OFFSET8 ZSIZE8 ZSIZE8
+    endif
+	
+	xmath OFFSET9 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8"
+
+    if ZSIZE9 == 0
+        log NAME OFFSET9 ZSIZE9
+    else
+        clog NAME OFFSET9 ZSIZE9 ZSIZE9
+    endif
+	
+	xmath OFFSET10 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9"
+
+    if ZSIZE10 == 0
+        log NAME OFFSET10 ZSIZE10
+    else
+        clog NAME OFFSET10 ZSIZE10 ZSIZE10
+    endif
+	
+	xmath OFFSET11 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10"
+
+    if ZSIZE11 == 0
+        log NAME OFFSET11 ZSIZE11
+    else
+        clog NAME OFFSET11 ZSIZE11 ZSIZE11
+    endif
+	
+	xmath OFFSET12 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11"
+
+    if ZSIZE12 == 0
+        log NAME OFFSET12 ZSIZE12
+    else
+        clog NAME OFFSET12 ZSIZE12 ZSIZE12
+    endif
+	
+	xmath OFFSET13 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12"
+
+    if ZSIZE13 == 0
+        log NAME OFFSET13 ZSIZE13
+    else
+        clog NAME OFFSET13 ZSIZE13 ZSIZE13
+    endif
+	
+	xmath OFFSET14 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12 + ZSIZE13"
+
+    if ZSIZE14 == 0
+        log NAME OFFSET14 ZSIZE14
+    else
+        clog NAME OFFSET14 ZSIZE14 ZSIZE14
+    endif
+	
+	xmath OFFSET15 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12 + ZSIZE13 + ZSIZE14"
+
+    if ZSIZE15 == 0
+        log NAME OFFSET15 ZSIZE15
+    else
+        clog NAME OFFSET15 ZSIZE15 ZSIZE15
+    endif
+	
+	xmath OFFSET16 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12 + ZSIZE13 + ZSIZE14 + ZSIZE15"
+
+    if ZSIZE16 == 0
+        log NAME OFFSET16 ZSIZE16
+    else
+        clog NAME OFFSET16 ZSIZE16 ZSIZE16
+    endif
+	
+	xmath OFFSET17 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12 + ZSIZE13 + ZSIZE14 + ZSIZE15 + ZSIZE16"
+
+    if ZSIZE17 == 0
+        log NAME OFFSET17 ZSIZE17
+    else
+        clog NAME OFFSET17 ZSIZE17 ZSIZE17
+    endif
+	
+	xmath OFFSET18 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12 + ZSIZE13 + ZSIZE14 + ZSIZE15 + ZSIZE16 + ZSIZE 17"
+
+    if ZSIZE18 == 0
+        log NAME OFFSET18 ZSIZE18
+    else
+        clog NAME OFFSET18 ZSIZE18 ZSIZE18
+    endif
+	
+	xmath OFFSET19 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12 + ZSIZE13 + ZSIZE14 + ZSIZE15 + ZSIZE16 + ZSIZE 17 + ZSIZE18"
+
+    if ZSIZE19 == 0
+        log NAME OFFSET19 ZSIZE19
+    else
+        clog NAME OFFSET19 ZSIZE19 ZSIZE19
+    endif
+	
+	xmath OFFSET20 "OFFSET + ZSIZE + ZSIZE2 + ZSIZE3 + ZSIZE4 + ZSIZE5 + ZSIZE6 + ZSIZE7 + ZSIZE8 + ZSIZE9 + ZSIZE10 + ZSIZE11 + ZSIZE12 + ZSIZE13 + ZSIZE14 + ZSIZE15 + ZSIZE16 + ZSIZE 17 + ZSIZE18 + ZSIZE19"
+
+    if ZSIZE20 == 0
+        log NAME OFFSET20 ZSIZE20
+    else
+        clog NAME OFFSET20 ZSIZE20 ZSIZE20
+    endif
+	
+	
+	
+	
+	
+
+    append
+	
+	
+    math ENTRY_OFF + XSIZE
+    goto ENTRY_OFF
+while ENTRY_OFF != PSF_SIZE

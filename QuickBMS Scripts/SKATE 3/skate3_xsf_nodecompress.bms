@@ -1,0 +1,31 @@
+# SKATE 3 XSF (No decompression Script 0.1)
+
+endian big
+idstring "SFIL"
+padding 0x80
+get XSF_SIZE asize
+do
+    savepos ENTRY_OFF
+    getdstring DUMMY 8
+    get SIZE long
+    get HEAD_SIZE long
+    get XSIZE long
+    xmath OFFSET "ENTRY_OFF + HEAD_SIZE"
+	
+	goto OFFSET
+	
+    getdstring DUMMY2 508
+    get NAME string
+	string NAME -= "Texture"
+    string NAME += "rx2"
+    string NAME += "_compressed"
+	
+	goto OFFSET
+    math OFFSET + 0x50
+	
+
+	math SIZE - 0x50
+    log NAME OFFSET SIZE
+    math ENTRY_OFF + XSIZE
+    goto ENTRY_OFF
+while ENTRY_OFF != XSF_SIZE

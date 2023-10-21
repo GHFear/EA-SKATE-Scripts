@@ -1,0 +1,25 @@
+# SKATE 1 XSF (No decompression Script 0.1)
+
+endian big
+idstring "SFIL"
+padding 0x80
+get XSF_SIZE asize
+do
+    savepos ENTRY_OFF
+    getdstring DUMMY 8
+    get SIZE long
+    get HEAD_SIZE long
+    get XSIZE long
+    xmath OFFSET "ENTRY_OFF + HEAD_SIZE"
+	
+	goto OFFSET
+	getdstring DUMMY2 2
+    get ZSIZE threebyte
+	get DUMMY3 byte
+	
+
+	
+    log "" OFFSET SIZE
+    math ENTRY_OFF + XSIZE
+    goto ENTRY_OFF
+while ENTRY_OFF != XSF_SIZE

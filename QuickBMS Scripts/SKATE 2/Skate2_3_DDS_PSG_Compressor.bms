@@ -1,0 +1,12 @@
+# SKATE 2/3 DDS/PSG COMPRESSOR (script 0.1)
+comtype dk2_compress
+get NAME basename
+endian big
+idstring \x44\x44\x53\x20\x7C
+get SIZE asize
+string NAME += "_compressed"
+
+xmath SIZE "SIZE - 0x80"
+
+math ZSIZE = SIZE
+clog NAME 0x80 ZSIZE SIZE

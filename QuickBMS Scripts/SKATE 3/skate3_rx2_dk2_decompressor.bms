@@ -1,0 +1,12 @@
+# SKATE 3 RX2 DECOMPRESSOR (script 0.1)
+comtype dk2
+endian big
+goto 1
+idstring "RW4xb2"
+get SIZE asize
+goto 568
+xmath OFFSET "SIZE - 568"
+append
+log "new_file" 0 568
+clog "new_file" 0x238 OFFSET SIZE
+append

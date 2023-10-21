@@ -1,0 +1,19 @@
+# SKATE 1 RX2 SORTER (Script 0.1) [QuickBMS]
+
+endian big
+goto 1
+idstring "RW4xb2"
+get FILE basename
+string FOLDER ""
+get SIZE asize
+goto 0x58
+get TYPEID long
+if TYPEID == 0x00001000
+	set FOLDER "TEXTURES"
+elif TYPEID == 0x00000001
+	set FOLDER "SIM"
+elif TYPEID == 0x00000004
+	set FOLDER "MESHES"
+endif
+string NAME p "%s\%s.rx2" FOLDER FILE
+log NAME 0 SIZE

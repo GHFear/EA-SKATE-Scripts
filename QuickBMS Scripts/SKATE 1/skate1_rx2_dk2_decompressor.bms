@@ -1,0 +1,8 @@
+# SKATE 1 RX2/DAT DECOMPRESSOR (script 0.1)
+comtype dk2
+endian big
+idstring \x10\xFB
+get SIZE asize
+string NAME += "_decompressed"
+math ZSIZE = SIZE
+clog NAME 0 ZSIZE SIZE
